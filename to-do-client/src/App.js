@@ -1,7 +1,15 @@
 import logo from "./logo.svg";
 import "./App.css";
 
+import React, { useState } from "react";
+
 function App() {
+  const [itsDone, setItsDone] = useState(false);
+
+  const handleItsDone = () => {
+    setItsDone((current) => !current);
+  };
+
   return (
     <div className="App">
       <header className="App-header">
@@ -20,8 +28,12 @@ function App() {
         </span>
 
         <div className="Task">
-          <input type="checkbox"></input>
-          <span>
+          <input
+            type="checkbox"
+            value={itsDone}
+            onChange={handleItsDone}
+          ></input>
+          <span className={itsDone ? "riskText" : ""}>
             Lorem Ipsum is simply dummy text of the printing and typesetting
             industry. Lorem Ipsum has been the industry's standard dummy text
             ever since the 1500s
