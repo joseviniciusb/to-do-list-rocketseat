@@ -1,10 +1,7 @@
 .App {
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+  min-height: 100vh;
+  background-color: #142346;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -15,15 +12,23 @@
 
 .App-header {
   background-color: #0d1629;
-  min-height: 100vh;
+  min-height: 20vh;
   display: flex;
   flex-direction: column;
   font-size: calc(10px + 2vmin);
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.TasksContainer {
+  color: white;
+}
+
+.Task {
+  background-color: #101b35;
+}
+
+.DeleteTask {
+  color: red;
 }
 
 @keyframes App-logo-spin {
