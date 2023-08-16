@@ -5,10 +5,29 @@ import React, { useState } from "react";
 
 function App() {
   const [itsDone, setItsDone] = useState(false);
+  const [taskDescription, setTaskDescription] = useState("");
+
+
+  const tasks = [];
+  let newTask = {description: ''};
 
   const handleItsDone = () => {
     setItsDone((current) => !current);
   };
+
+  const handleDescription = (event) => {
+    setTaskDescription(event.target.value);
+  };
+
+  const createTask = (event) => {
+    event.preventDefault();
+    newTask.description = taskDescription;
+    tasks.push(newTask);
+    console.log('array', tasks);
+    console.log('newTask',newTask);
+   
+  };
+
 
   return (
     <div className="App">
@@ -17,8 +36,14 @@ function App() {
       </header>
 
       <div className="AddTaskInput">
-        <input type="text"></input>
-        <button>Criar tarefa</button>
+        <form onSubmit={createTask}>
+          <input
+            type="text"
+            value={taskDescription}
+            onChange={handleDescription}
+          ></input>
+          <button>Criar tarefa</button>
+        </form>
       </div>
 
       <div className="TasksContainer">
