@@ -7,8 +7,10 @@ function App() {
   const [taskDescription, setTaskDescription] = useState("");
   const [tasks, setTasks] = useState([]);
 
+  const doneCounter = tasks.filter((task) => task.itsDone === true).length;
+
   const handleItsDone = (id) => {
-    const taskIndex = tasks.findIndex((task) => task.id === id)
+    const taskIndex = tasks.findIndex((task) => task.id === id);
     const tempTasks = [...tasks];
     tempTasks[taskIndex].itsDone = !tempTasks[taskIndex].itsDone;
     setTasks(tempTasks);
@@ -47,9 +49,9 @@ function App() {
       </div>
 
       <div className="TasksContainer">
-        <span className="TaskCount">{"Tarefas criadas:" + 0}</span>
+        <span className="TaskCount">{"Tarefas criadas:" + tasks.length}</span>
         <span className="CompletedTaskCounte">
-          {"Tarefas concluidas:" + 0 + "de" + tasks.length}
+          {"Tarefas concluidas:" + doneCounter + "de" + tasks.length}
         </span>
 
         {tasks.map((task) => (
@@ -57,8 +59,7 @@ function App() {
             <input
               type="checkbox"
               value={task.itsDone}
-              onChange={()=>handleItsDone(task.id)}
-            
+              onChange={() => handleItsDone(task.id)}
             ></input>
             <span className={task.itsDone ? "riskText" : ""}>
               {task.description}
