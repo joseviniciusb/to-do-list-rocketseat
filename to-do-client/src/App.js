@@ -3,15 +3,15 @@ import "./App.css";
 
 import React, { useState } from "react";
 
-const Tasko = [];
-
 function App() {
-  const [itsDone, setItsDone] = useState(false);
   const [taskDescription, setTaskDescription] = useState("");
   const [tasks, setTasks] = useState([]);
 
-  const handleItsDone = () => {
-    setItsDone((current) => !current);
+  const handleItsDone = (id) => {
+    const taskIndex = tasks.findIndex((task) => task.id === id)
+    const tempTasks = [...tasks];
+    tempTasks[taskIndex].itsDone = !tempTasks[taskIndex].itsDone;
+    setTasks(tempTasks);
   };
 
   const handleDescription = (event) => {
@@ -20,7 +20,11 @@ function App() {
 
   const createTask = (event) => {
     event.preventDefault();
-    let newTask = { description: taskDescription };
+    let newTask = {
+      description: taskDescription,
+      id: (Math.random() + 1).toString(36).substring(7),
+      itsDone: false,
+    };
     setTaskDescription("");
     setTasks([...tasks, newTask]);
   };
@@ -30,7 +34,7 @@ function App() {
       <header className="App-header">
         <h1>ToDoListss</h1>
       </header>
-      {JSON.stringify(Tasko)}
+
       <div className="AddTaskInput">
         <form onSubmit={createTask}>
           <input
@@ -45,22 +49,23 @@ function App() {
       <div className="TasksContainer">
         <span className="TaskCount">{"Tarefas criadas:" + 0}</span>
         <span className="CompletedTaskCounte">
-          {"Tarefas concluidas:" + 0 + "de" + 0}
+          {"Tarefas concluidas:" + 0 + "de" + tasks.length}
         </span>
 
-        <div className="Task">
-          <input
-            type="checkbox"
-            value={itsDone}
-            onChange={handleItsDone}
-          ></input>
-          <span className={itsDone ? "riskText" : ""}>
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s
-          </span>
-          <span className="DeleteTask">X</span>
-        </div>
+        {tasks.map((task) => (
+          <div className="Task" key={task.id}>
+            <input
+              type="checkbox"
+              value={task.itsDone}
+              onChange={()=>handleItsDone(task.id)}
+            
+            ></input>
+            <span className={task.itsDone ? "riskText" : ""}>
+              {task.description}
+            </span>
+            <span className="DeleteTask">X</span>
+          </div>
+        ))}
       </div>
     </div>
   );
