@@ -31,6 +31,15 @@ function App() {
     setTasks([...tasks, newTask]);
   };
 
+  const deleteTask = (id) => {
+    const taskIndex = tasks.findIndex((task) => task.id === id);
+    const newTasks = [...tasks];
+     newTasks.splice(taskIndex, 1);
+     setTasks(newTasks);
+
+
+  };
+
   return (
     <div className="App">
       <header className="App-header">
@@ -64,7 +73,9 @@ function App() {
             <span className={task.itsDone ? "riskText" : ""}>
               {task.description}
             </span>
-            <span className="DeleteTask">X</span>
+            <span className="DeleteTask" onClick={() => deleteTask(task.id)}>
+              X
+            </span>
           </div>
         ))}
       </div>
