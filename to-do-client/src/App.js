@@ -3,13 +3,12 @@ import "./App.css";
 
 import React, { useState } from "react";
 
+const Tasko = [];
+
 function App() {
   const [itsDone, setItsDone] = useState(false);
   const [taskDescription, setTaskDescription] = useState("");
-
-
-  const tasks = [];
-  let newTask = {description: ''};
+  const [tasks, setTasks] = useState([]);
 
   const handleItsDone = () => {
     setItsDone((current) => !current);
@@ -21,20 +20,17 @@ function App() {
 
   const createTask = (event) => {
     event.preventDefault();
-    newTask.description = taskDescription;
-    tasks.push(newTask);
-    console.log('array', tasks);
-    console.log('newTask',newTask);
-   
+    let newTask = { description: taskDescription };
+    setTaskDescription("");
+    setTasks([...tasks, newTask]);
   };
-
 
   return (
     <div className="App">
       <header className="App-header">
         <h1>ToDoListss</h1>
       </header>
-
+      {JSON.stringify(Tasko)}
       <div className="AddTaskInput">
         <form onSubmit={createTask}>
           <input
