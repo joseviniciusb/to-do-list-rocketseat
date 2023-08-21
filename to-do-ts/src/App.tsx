@@ -3,24 +3,30 @@ import "./App.css";
 
 import React, { useState } from "react";
 
+interface Task {
+  id: string;
+  description: string;
+  itsDone: boolean;
+}
+
 function App() {
   const [taskDescription, setTaskDescription] = useState("");
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState<Task[]>([]);
 
   const doneCounter = tasks.filter((task) => task.itsDone === true).length;
 
-  const handleItsDone = (id) => {
+  const handleItsDone = (id: string) => {
     const taskIndex = tasks.findIndex((task) => task.id === id);
     const tempTasks = [...tasks];
     tempTasks[taskIndex].itsDone = !tempTasks[taskIndex].itsDone;
     setTasks(tempTasks);
   };
 
-  const handleDescription = (event) => {
+  const handleDescription = (event: React.ChangeEvent<HTMLInputElement>) => {
     setTaskDescription(event.target.value);
   };
 
-  const createTask = (event) => {
+  const createTask = (event: React.FormEvent) => {
     event.preventDefault();
     let newTask = {
       description: taskDescription,
@@ -31,13 +37,11 @@ function App() {
     setTasks([...tasks, newTask]);
   };
 
-  const deleteTask = (id) => {
+  const deleteTask = (id: string) => {
     const taskIndex = tasks.findIndex((task) => task.id === id);
     const newTasks = [...tasks];
-     newTasks.splice(taskIndex, 1);
-     setTasks(newTasks);
-
-
+    newTasks.splice(taskIndex, 1);
+    setTasks(newTasks);
   };
 
   return (
@@ -67,7 +71,6 @@ function App() {
           <div className="Task" key={task.id}>
             <input
               type="checkbox"
-              value={task.itsDone}
               onChange={() => handleItsDone(task.id)}
             ></input>
             <span className={task.itsDone ? "riskText" : ""}>
