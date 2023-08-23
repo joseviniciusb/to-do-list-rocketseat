@@ -10,14 +10,7 @@
   }
 }
 
-.App-header {
-  background-color: #0d1629;
-  min-height: 20vh;
-  display: flex;
-  flex-direction: column;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
+
 
 .TasksContainer {
   color: white;

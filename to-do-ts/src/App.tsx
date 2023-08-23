@@ -2,6 +2,7 @@ import logo from "./logo.svg";
 import "./App.css";
 
 import React, { useState } from "react";
+import Header from "./components/Header/Header";
 
 interface Task {
   id: string;
@@ -46,9 +47,8 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>ToDoListss</h1>
-      </header>
+
+     <Header/>
 
       <div className="AddTaskInput">
         <form onSubmit={createTask}>
