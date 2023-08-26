@@ -1,12 +1,13 @@
 import "./Header.css";
+import logo from '../../assets/to-do-logo.png'
 
 const Header = () => {
     return (
-      <div className="teste">
-  <header className="App-header">
-        <h1>ToDoListss</h1>
+      
+      <header className="App-header">
+        <img className="logo" src={logo}/>
       </header>
-      </div>
+     
       
     )
 }
