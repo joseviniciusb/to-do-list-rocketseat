@@ -66,10 +66,17 @@ function App() {
       </div>
 
       <div className="TasksContainer">
-        <span className="TaskCount">{"Tarefas criadas:" + tasks.length}</span>
-        <span className="CompletedTaskCounte">
-          {"Tarefas concluidas:" + doneCounter + "de" + tasks.length}
-        </span>
+        <div className="counterContainer">
+          <span className="taskCount">
+            {"Tarefas criadas: "}
+            <span className="countBadge">{tasks.length}</span>
+          </span>
+          <span className="taskCount">
+            {"Tarefas concluidas: "}
+            <span className="countBadge">{doneCounter + " de "}</span>
+            <span className="countBadge">{tasks.length}</span>
+          </span>
+        </div>
 
         {tasks.map((task) => (
           <div className="Task" key={task.id}>

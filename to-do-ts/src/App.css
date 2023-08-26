@@ -40,6 +40,26 @@
 }
 
 .TasksContainer {
+  margin: auto;
+  width: 736px;
+  height: 451px;
+  color: white;
+  margin-top: 45px;
+}
+
+.counterContainer {
+  display: flex;
+  justify-content: space-between;
+  height: 19px;
+  margin-bottom: 25px;
+}
+
+.taskCount {
+  color: #4EA8DE;
+  font-weight: bold;
+}
+
+.countBadge {
   color: white;
 }
 
