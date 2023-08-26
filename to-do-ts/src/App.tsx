@@ -1,5 +1,6 @@
-import logo from "./logo.svg";
 import "./App.css";
+
+import plusIcon from "./assets/plus-icon.png";
 
 import React, { useState } from "react";
 import Header from "./components/Header/Header";
@@ -47,17 +48,20 @@ function App() {
 
   return (
     <div className="App">
+      <Header />
 
-     <Header/>
-
-      <div className="AddTaskInput">
+      <div className="addTaskInputContainer">
         <form onSubmit={createTask}>
           <input
+            className="addTaskInput"
             type="text"
             value={taskDescription}
             onChange={handleDescription}
           ></input>
-          <button>Criar tarefa</button>
+          <button className="addTaskButton">
+            <span>Criar</span>
+            <img src={plusIcon}></img>
+          </button>
         </form>
       </div>
 
