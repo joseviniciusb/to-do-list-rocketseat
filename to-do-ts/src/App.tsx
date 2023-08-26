@@ -1,6 +1,7 @@
 import "./App.css";
 
 import plusIcon from "./assets/plus-icon.png";
+import trashIcon from "./assets/trash-icon.png"
 
 import React, { useState } from "react";
 import Header from "./components/Header/Header";
@@ -79,7 +80,7 @@ function App() {
         </div>
 
         {tasks.map((task) => (
-          <div className="Task" key={task.id}>
+          <div className="task" key={task.id}>
             <input
               type="checkbox"
               onChange={() => handleItsDone(task.id)}
@@ -87,9 +88,7 @@ function App() {
             <span className={task.itsDone ? "riskText" : ""}>
               {task.description}
             </span>
-            <span className="DeleteTask" onClick={() => deleteTask(task.id)}>
-              X
-            </span>
+            <img onClick={() => deleteTask(task.id)}  src={trashIcon}></img>
           </div>
         ))}
       </div>
