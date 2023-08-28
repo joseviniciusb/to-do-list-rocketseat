@@ -1,7 +1,8 @@
 import "./App.css";
 
 import plusIcon from "./assets/plus-icon.png";
-import trashIcon from "./assets/trash-icon.png"
+import trashIcon from "./assets/trash-icon.png";
+import clipboard from "./assets/clipboard.png"
 
 import React, { useState } from "react";
 import Header from "./components/Header/Header";
@@ -51,7 +52,7 @@ function App() {
     <div className="App">
       <Header />
 
-      <div className="addTaskInputContainer">
+      <div className="createTaskContainer">
         <form onSubmit={createTask}>
           <input
             className="addTaskInput"
@@ -61,7 +62,7 @@ function App() {
           ></input>
           <button className="addTaskButton">
             <span>Criar</span>
-            <img src={plusIcon}></img>
+            <img alt="a plus icon" src={plusIcon}></img>
           </button>
         </form>
       </div>
@@ -79,18 +80,23 @@ function App() {
           </span>
         </div>
 
-        {tasks.map((task) => (
-          <div className="task" key={task.id}>
-            <input
-              type="checkbox"
-              onChange={() => handleItsDone(task.id)}
-            ></input>
-            <span className={task.itsDone ? "riskText" : ""}>
-              {task.description}
-            </span>
-            <img onClick={() => deleteTask(task.id)}  src={trashIcon}></img>
-          </div>
-        ))}
+        {tasks.length === 0
+          ? <div className="emptyContainer"> <img alt="clipboard" src={clipboard}></img>
+            <h3>Você ainda não tem tarefas cadastradas</h3>
+            <p>Crie tarefas e organize seus items a fazer</p>
+           </div>
+          : tasks.map((task) => (
+              <div className="task" key={task.id}>
+                <input
+                  type="checkbox"
+                  onChange={() => handleItsDone(task.id)}
+                ></input>
+                <span className={task.itsDone ? "riskText" : ""}>
+                  {task.description}
+                </span>
+                <img onClick={() => deleteTask(task.id)} src={trashIcon} alt="a trash icon"></img>
+              </div>
+            ))}
       </div>
     </div>
   );

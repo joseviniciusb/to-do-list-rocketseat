@@ -1,32 +1,33 @@
 .App {
   text-align: center;
   min-height: 100vh;
-  background-color: #142346;
-  display: flex;
+  background-color: #1a1a1a;
   flex-direction: column;
   overflow-y: scroll;
- 
+  
 }
 
 .App::-webkit-scrollbar {
   display: none;
 }
 
-.addTaskInputContainer {
-  display: flex;
+.createTaskContainer {
   margin: auto;
   width: 736px;
   margin-top: -20px;
   height: 40px;
+  text-align: center;
+ 
 }
 
-.addTaskInputContainer form {
+.createTaskContainer form {
   display: flex;
   padding: 0px;
 }
 
 .addTaskInput {
-  width: 638px;
+  width: 90%;
+  height: 32px;
   background-color: #262626;
   color: #808080;
   border: none;
@@ -35,11 +36,12 @@
 .addTaskButton {
   background-color: #1e6f9f;
   margin-left: 5px;
-  width: 90px;
+  width: 10%;
   color: white;
   justify-content: center;
   border: none;
   border-radius: 10%;
+  cursor: pointer;
 }
 
 .addTaskButton img {
@@ -48,13 +50,11 @@
 }
 
 .TasksContainer {
-
   margin: auto;
   width: 736px;
   height: 451px;
   color: white;
   margin-top: 45px;
-
 }
 
 .task {
@@ -63,8 +63,13 @@
   align-items: center;
   background-color: #101b35;
   height: 48px;
-   margin: 10px;
-   padding: 0px 50px 0px;
+  margin: 10px;
+  padding: 0px 50px 0px;
+}
+
+.emptyContainer {
+padding-top: 32px;
+color: #808080
 }
 
 .counterContainer {
@@ -74,10 +79,8 @@
   margin-bottom: 25px;
 }
 
-
-
 .taskCount {
-  color: #4EA8DE;
+  color: #4ea8de;
   font-weight: bold;
 }
 
