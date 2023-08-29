@@ -14,11 +14,22 @@ interface Task {
 function App() {
   const [tasks, setTasks] = useState<Task[]>([]);
 
+  const getLocalStorage = () => {
+    const data = localStorage.getItem("tasks");
+    if (data) {
+      setTasks(JSON.parse(data));
+    }
+  };
+
   useEffect(() => {
     if (tasks.length > 0) {
       localStorage.setItem("tasks", JSON.stringify(tasks));
     }
   }, [tasks]);
+
+  useEffect(() => {
+    getLocalStorage();
+  }, []);
 
   const handleItsDone = (id: string) => {
     const taskIndex = tasks.findIndex((task) => task.id === id);
