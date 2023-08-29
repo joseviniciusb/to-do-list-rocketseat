@@ -4,7 +4,7 @@ import plusIcon from "./assets/plus-icon.png";
 import trashIcon from "./assets/trash-icon.png";
 import clipboard from "./assets/clipboard.png"
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Header from "./components/Header/Header";
 
 interface Task {
@@ -16,6 +16,12 @@ interface Task {
 function App() {
   const [taskDescription, setTaskDescription] = useState("");
   const [tasks, setTasks] = useState<Task[]>([]);
+
+  useEffect(() => {
+    if(tasks.length > 0) {
+      localStorage.setItem("tasks", JSON.stringify(tasks));
+    }
+  }, [tasks]);
 
   const doneCounter = tasks.filter((task) => task.itsDone === true).length;
 
