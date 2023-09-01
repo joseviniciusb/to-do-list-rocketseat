@@ -1,24 +1,13 @@
 import React from "react";
 
-
-import trashIcon from "../../assets/trash-icon.png"
 import clipboard from "../../assets/clipboard.png"
+import TaskItem from "../TaskItem/TaskItem";
 
-interface Task {
-  id: string;
-  description: string;
-  itsDone: boolean;
-}
-
-interface TaskListProps {
-  tasks: Task[];
-  onToggleDone: (id: string) => void;
-  onDeleteTask: (id: string) => void;
-}
+import { TaskListProps } from "../types";
 
 const TaskList: React.FC<TaskListProps> = ({ tasks, onToggleDone, onDeleteTask }) => {
 
-    const doneCounter = tasks.filter((task) => task.itsDone === true).length;
+  const doneCounter = tasks.filter((task) => task.itsDone === true).length;
 
   return (
     <div className="TasksContainer">
@@ -40,16 +29,7 @@ const TaskList: React.FC<TaskListProps> = ({ tasks, onToggleDone, onDeleteTask }
             <p>Crie tarefas e organize seus items a fazer</p>
            </div>
           : tasks.map((task) => (
-              <div className="task" key={task.id}>
-                <input
-                  type="checkbox"
-                  onChange={() => onToggleDone(task.id)}
-                ></input>
-                <span className={task.itsDone ? "riskText" : ""}>
-                  {task.description}
-                </span>
-                <img onClick={() => onDeleteTask(task.id)} src={trashIcon} alt="a trash icon"></img>
-              </div>
+              <TaskItem {...{task, onDeleteTask, onToggleDone, tasks}}  />
             ))}
     </div>
   );
