@@ -1,37 +1,16 @@
 import "./App.css";
 
-import React, { useState, useEffect } from "react";
 import Header from "./components/Header/Header";
 import TaskList from "./components/TaskList/TaskList";
 import TaskForm from "./components/CreateTaskForm/CreateTaskForm";
+import { useStorage } from "./useStorage";
 
-interface Task {
-  id: string;
-  description: string;
-  itsDone: boolean;
-}
+import { Task } from "./components/types";
 
 function App() {
-  const [tasks, setTasks] = useState<Task[]>([]);
+  const [tasks, setTasks] = useStorage();
 
-  const getLocalStorage = () => {
-    const data = localStorage.getItem("tasks");
-    if (data) {
-      setTasks(JSON.parse(data));
-    }
-  };
-
-  useEffect(() => {
-    if (tasks.length > 0) {
-      localStorage.setItem("tasks", JSON.stringify(tasks));
-    }
-  }, [tasks]);
-
-  useEffect(() => {
-    getLocalStorage();
-  }, []);
-
-  const handleItsDone = (id: string) => {
+  const handleItsDone = (id: string, tasks : Task[]) => {
     const taskIndex = tasks.findIndex((task) => task.id === id);
     const tempTasks = [...tasks];
     tempTasks[taskIndex].itsDone = !tempTasks[taskIndex].itsDone;
@@ -68,5 +47,6 @@ function App() {
     </div>
   );
 }
+
 
 export default App;
